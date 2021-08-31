@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/* 
+		변수 생성 > 값입력 >> 타입설정
+		var a;  let b; 정의되지 않았다
+		a =100; , b= "A" >> 타입설정 시점 >> number , String
+		-ES5 전까지는 타입 : var >> 이후 2016 ES6(ECMA) >> let , const
+		-기존 코드 유지보수 : var , let , const
+		-권장 : let , const
+		
+		javascript (정수 , 실수 , boolean , 문자)
+		-내부적으로 설정 : Number , boolean , Array , Object 타입
+		
+		변수(scope)
+		현재 page 중심 : Ex03_Script.html 
+		1. page 전체에서 사용 : 전역(global) : 모든 함수안에서 사용 가능
+		2. page 안에 함수안에 사용 : 지역(local)
+		
+		
+		
+		
+		*/
+		let data=100; //global (전역) 모든 함수에서 사용 가능
+		
+		function call(){
+			let name; //local (지역)			
+			name = "홍길동";
+		}
+		
+		let n; //선언
+		n = "A"; //초기화
+		
+		//******javascript 전역 , 지역 초기화 하고 사용하자 **********
+		let i , j ;
+		i = 200;
+		j = 300;
+		let result = i + j;
+		console.log(result);
+		
+		let intnum = 100; //정수
+		let dnum = 12.345;//실수
+		let flag = true; //boolean
+		let str = null; //값이 없다
+		let str2 = "ABC"; //문자열
+		
+		console.log(typeof(intnum));
+		console.log(typeof(dnum));
+		console.log(typeof(flag));
+		console.log(typeof(str));
+		console.log(typeof(str2));
+		
+		//연산자
+		//산술(+ , - , / , %)
+		let num1 = 10;
+		let num2 = 3;
+		document.write(num1/num2 + "<br>");
+		document.write(num1%num2 + "<br>");
+		
+		//관계(==(===) , != , >= ...)
+		let a =3;
+		let b =5;
+		document.write((a == b) +"<br>");
+		document.write((a != b) +"<br>");
+		document.write((a > b) +"<br>");
+		
+		//논리 (&& , ||)
+		document.write((10 > 5) && (1 != 3) +"<br>");
+		document.write((10 < 5) || (1 != 3) +"<br>");
+		
+		//삼항연산자 *****
+		let result2 = (4%2 == 0) ? "짝수" : "홀수";
+		document.write(result2 + "<br>");
+		
+		
+		//대입연산자(+= , -= , *= , /=)
+		let p = 10;
+		let k = 5;
+		p+=k; //p = p + k;
+		document.write("결과 : " + p + "<br>");
+		
+		let x = 5+5;
+		let y = "5" + 5;  // + 하나가 산술 , 결합
+		let z = "Hello" + 5;
+		
+		
+		//주의 사항
+		let v = "5"; //문자형 숫자
+		let v2 = 5;
+		let v3 = 5;
+		document.write((v == v2) +"<br>");  //== 값을 비교하는 연산자
+		document.write((v === v2) +"<br>"); //POINT : 값만 같은 것이 아니라 타입 동일 >> false
+		document.write((v2 === v3) +"<br>");
+	</script>
+</head>
+<body>
+
+</body>
+</html>

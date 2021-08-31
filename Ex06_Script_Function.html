@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+</head>
+<body>
+	<p id="time"></p>
+	<button onclick="myTimeStop()">Stop Time</button>
+</body>
+<script type="text/javascript">
+		//**callback** 함수
+		//프로그램 논리(흐름)에 의해서 [자동 호출] 되는 함수
+		//익명함수로 구현된 callback 함수는 1초마다 재호출 
+		let myTime= window.setInterval(function() {
+			let d = new Date();  //java :Date d = new Date()
+			let t = d.toLocaleTimeString();
+			
+			//DOM script
+			document.getElementById("time").innerHTML =t;
+		}, 1000);
+	
+		//myTime  == setInterval
+		function myTimeStop(){
+			window.clearInterval(myTime);
+		}
+	</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button id="mybtn">클릭</button>
+</body>
+	<script type="text/javascript">
+		let x = document.getElementById("mybtn");
+		
+		x.addEventListener("mouseover",myFunc);
+		x.addEventListener("mouseout",myFunc2);
+		x.addEventListener("click",myFunc3);
+		
+		function myFunc(){
+			document.getElementById("mybtn").innerHTML += "Mouse Over<br>";
+		}
+		function myFunc2(){
+			document.getElementById("mybtn").innerHTML += "Mouse Out<br>";
+		}
+		function myFunc3(){
+			document.getElementById("mybtn").innerHTML += "Click<br>";
+		}
+	</script>
+</html>

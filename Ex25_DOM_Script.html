@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function displayDate(){
+			console.log("call");
+			document.getElementById("demo").innerHTML= new Date();
+		}
+		
+		//document.getElementById("mybtn").onclick = displayDate();
+		//body 영역이 메모리에 올라오지 않았어요
+		
+		window.onload = function(){
+			console.log("load");
+		}
+	</script>
+</head>
+<body>
+	<button id="mybtn">눌러봐</button>
+	<br>
+	<button id="mybtn2" onclick="displayDate()">눌러봐2</button>
+	<br>
+	<p id="demo"></p>
+</body>
+	<script type="text/javascript">
+		//함수호출
+		//displayDate();
+		
+		//버튼을 클릭하면 함수 호출
+		//해석기 : () 있으면 displayDate() 바로 실행
+		//**************************************이벤트 함수는 괄호를 사용하지 않아요 (x)
+		document.getElementById("mybtn").onclick = displayDate;
+	</script>
+</html>

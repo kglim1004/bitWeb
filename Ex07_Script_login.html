@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/*  
+		유효성 검증
+		검증 누가 할까
+		서버가 : 클라이언트 브라우져
+		
+		1. Client >> 로그인 데이터 입력(id,pwd) >> 서버로 전송 >> 서버가 값을 받아요 >> 검증 >> Client >>응답
+		2. Client >> 로그인 데이터 입력(id,pwd) >> 전송하지 않고 검증 >> 값의 입력여부 , 문자의 길이 (javascript)
+		   2. Client의 웹 브라우져 할 수 있는 것은 최대한 Client 에게 ...
+		   javascript 통해서 처리
+		   
+		
+		*/	
+		function formSend(){
+			//유효성 검증 > 문제가 없다면 >  데이터 서버로 전송
+			//원하는 형식이 아니면 .... 재입력 요청
+		
+			//1. 함수가 검증을 위해서 element 정보 필요
+			//let data = document.forms[0].elements[1];
+			//원하는 요소를 찿거나 처리하는 것은 최종적으로 : DOM 사용
+		   let inputele = document.loginform.txtuserid;
+		   // txtuserid  == 	<input type="text" name="txtuserid">
+		   console.log(inputele);
+		   console.log(inputele.value);
+		   //값을 가지고 내가 원하는 형태 .... 검증 ....
+		   //개발자 마음
+		   //1. 입력 했는지 안했는지
+		   //2. 입력값의 길이가 10자 이내인지
+		   if(inputele.value == "" || !(inputele.value.length >= 3 && inputele.value.length <= 10)){
+			   alert("다시 입력해");
+			   document.loginform.txtuserid.focus();
+			   inputele.select(); //선택 블럭 잡이게 ...
+		   }else{
+			   alert("검증 완료");
+			   //서버로 전송
+			   document.loginform.action="Ex07_login.jsp";
+			   document.loginform.submit(); //내장된 submit 호출 전송 (서버로)
+			   
+		   }
+		}
+	</script>
+</head>
+<body>
+		<form action="" method="get" name="loginform">
+			ID:<input type="text" name="txtuserid">
+			PWD:<input type="password"  name="txtpwd" id="txtpwd">
+			<input type="button" value="전송" onclick="formSend()">
+			<!--  
+			1. type="submit"
+			2. type="image"
+			3. type="button"  onclick 이벤트를 통해서 호출되는 함수 구현
+			
+			-->
+		</form>
+</body>
+</html>

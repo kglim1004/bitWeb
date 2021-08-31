@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		window.onload=function(){  //dom 사용하는 일반적인 코드
+			let pele = document.createElement("p");
+			let hele = document.createElement("hr");
+			let h3ele = document.createElement("h3");
+			
+			let textnode = document.createTextNode("hello world");
+			let divele = document.createElement("div");
+			let textnode2= document.createTextNode("HI HI HI");
+			
+			hele.setAttribute("title", "수평선");
+			
+			h3ele.appendChild(textnode);
+			
+			divele.appendChild(textnode2);
+			
+			
+			document.body.appendChild(pele).appendChild(divele);
+			//<body><p><div>HI HI HI</div></p></body>
+			
+			document.body.appendChild(hele);
+			//<body><p><div>HI HI HI</div></p><hr title="수평선"></body>
+			
+			document.body.appendChild(h3ele);
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

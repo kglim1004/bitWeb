@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		window.onload =function(){
+			let btnobj = document.getElementById("btnGetData");
+			//이벤트 동적 처리 
+			//<input type="button" onclick="" 좋은 방법은 아니다 (디자이너와 협업 ...)
+			btnobj.onclick = function(){  //element.이벤트 = 익명함수
+				let txtmsg = document.getElementById("txtmessage");
+				let str="";
+				str += "ID : " + txtmsg.getAttribute("id"); //value 리턴
+				str += "\n value : " + txtmsg.getAttribute("value");
+				str += "\n value : " + txtmsg.value;  //가장 일반적인 속성
+				str += "\n length : " + txtmsg.value.length;
+				
+				console.log(str);
+			}
+			
+			let index = 0;
+			document.getElementById("btnCreate").onclick= function(){
+				let txtname = document.createElement("input");
+				txtname.setAttribute("type", "text");
+				//<input type=text
+				txtname.setAttribute("id", "txtbox");
+				txtname.setAttribute("value", "홍길동"+ ++index);
+				
+				document.body.appendChild(txtname);
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="txtmessage" value="hello">
+	<input type="button" value="getinfo" id="btnGetData">
+	<hr>
+	<input type="button" value="동적생성" id="btnCreate">
+</body>
+</html>

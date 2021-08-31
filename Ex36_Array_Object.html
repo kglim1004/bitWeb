@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		//javascript 정적 + 동적 > Array
+		
+		
+		let array = ['포도','사과'];
+		document.write(array.toString() +"<br>"); //재정의(toString())
+		document.write(array + "<br>"); //toString() 생략
+		
+		for(let i = 0 ; i < array.length ; i++){
+			document.write(array[i] + "<br>");
+		}
+		
+		document.write("<hr>")
+		
+		for(let index in array){
+			document.write(array[index] + "<br>");
+		}
+		
+		//javascript 가지는 배열 특징
+		array[2] ="바나나"; //동적 데이터 추가
+		document.write(array.toString() + " / " + array.length + "<br>");
+		
+		//가능하나 권장하지 않아요
+		array[10] = "애플망고";
+		document.write(array.toString() + " / " + array.length + "<br>");
+		document.write(array[9] + "_array[9]<br>");  //undefined
+		
+		
+		let array2 = ["one","two","three"];
+		document.write(array2.length + "<br>");
+		
+		//권장하지 않아요
+		array2.length =2; //강제로
+		document.write(array2.toString() + " / " + array2.length + "<br>");
+		
+		
+		array2.length =4;
+		document.write(array2.toString() + " / " + array2.length + "<br>");
+		
+		document.write("********************************<br>");
+		//권장방법
+		//Array 내부적으로 stack 구조 (push , pop  : LIFO)
+		array2.push("four");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+	
+		
+		
+		//GOOD
+		let list =[];
+		list.push("A");
+		list.push("B");
+		list.push("C");
+		
+		document.write("<br>" + list.pop());
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

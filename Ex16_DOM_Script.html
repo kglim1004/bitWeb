@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	
+		/*
+		1. When a web page is loaded, the browser creates a Document Object Model of the page.
+		
+		2. 	JavaScript can change all the HTML elements in the page
+			JavaScript can change all the HTML attributes in the page
+			JavaScript can change all the CSS styles in the page
+			JavaScript can remove existing HTML elements and attributes
+			JavaScript can add new HTML elements and attributes
+			JavaScript can react to all existing HTML events in the page
+			JavaScript can create new HTML events in the page
+			작업이 가능하다
+			
+		3. 작업
+		Finding HTML Elements
+		document.getElementById(id)	Find an element by element id
+		document.getElementsByTagName(name)	Find elements by tag name
+		document.getElementsByClassName(name)	Find elements by class name
+		
+		
+		Changing HTML Elements
+		element.innerHTML =  new html content	Change the inner HTML of an element
+		element.attribute = new value	Change the attribute value of an HTML element
+		element.style.property = new style	Change the style of an HTML element
+		Method
+		element.setAttribute(attribute, value)	Change the attribute value of an HTML element
+		
+		Adding and Deleting Elements
+		document.createElement(element)	Create an HTML element
+		document.removeChild(element)	Remove an HTML element
+		document.appendChild(element)	Add an HTML element
+		document.replaceChild(new, old)	Replace an HTML element
+		document.write(text)			Write into the HTML output stream
+		
+		https://www.w3schools.com/js/js_htmldom_document.asp 정리
+		
+		
+		*/
+	</script>
+</head>
+<body>
+		<div id="demo">첫번쨰</div>
+		<div id="demo">두번쨰</div>
+		<!-- ** 의미가 없을까 : 계층 트리 형태에서 id="demo" 처음 만나는 녀석을 적용 **  -->
+</body>
+	<script type="text/javascript">
+		let ele_div = document.getElementById("demo");
+		console.log(ele_div);
+		ele_div.innerHTML = "<b>Hello World</b>";
+	</script>
+</html>
+
+
+

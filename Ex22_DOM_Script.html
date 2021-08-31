@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		div {background-color: #D94A38; width: 120px; height: 20px; padding: 40px;}
+	</style>
+	<script type="text/javascript">
+		window.onload =function(){
+			// onmouseover="mOver(this)" onmouseout="mOut(this)"
+			let div = document.getElementById("divele");
+			div.onmouseover = function() {
+		            //this.innerHTML = "Thank You";
+		            div.innerHTML = "Thank You";
+		     };
+		    
+		     div.onmouseout = function() {
+		            //this.innerHTML = "Mouse Over Me";
+		    	 	div.innerHTML = "Mouse Over Me";
+		     };
+			
+		}
+		/*
+		function mOver(obj) {
+			obj.innerHTML = "Thank You"
+		}
+
+		function mOut(obj) {
+			obj.innerHTML = "Mouse Over Me"
+		}
+		*/
+	</script>
+</head>	
+<body>
+	<div id="divele">
+		Mouse Over Me
+	</div>
+</body>
+</html>

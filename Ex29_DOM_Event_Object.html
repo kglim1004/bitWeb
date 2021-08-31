@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>내장된 Event객체정보</title>
+	<script type="text/javascript">
+		/*  
+		JAVA
+		try{
+			0/0 ... 예외가 발생 >> 예외에 대한 정보를 담을 수 있는 객체가 자동 new 생성
+			그 객체의 e 변수가 받는다
+		}catch(Exception e){
+			//그 정보 확인
+		}
+		
+		
+		javascript > 사건이 발생(click , mouseover) > 내부적으로 객체 생성 
+		>> Event 객체 >> 다양한 정보(누가 , 어디서 , 무었을 .....)
+		window.event.메서드 (다양한 함수)
+		window.event.속성 (정보)
+		
+		당신이 문제를 해결 도움 .....
+		개발자는 그 객체 받는 방법을 찿아서 정보를 확인하자
+		
+		
+		*/	
+		window.onload = function(){
+			let btn = document.getElementById("mybtn");
+			btn.onclick = function(e){ //onclick 관련된 event객체의 주소를 받는다
+				console.log(e.type); //이벤트 종류 >> click
+				console.log(e.target); //<span>눌러봐</span>
+				console.log(e.currentTarget); //<button id="mybtn"><span>눌러봐</span></button>
+				console.log(e.x);  //좌표값
+				console.log(e.y);  //좌표값
+			}
+			
+			
+			let btn2 = document.getElementById("mybtn2");
+			let handler = function(event){
+				switch (event.type) {
+				case "click": alert("클릭");
+					  	break;
+				case "mouseover": event.target.style.backgroundColor="red";
+				  		break;
+				case "mouseout": event.target.style.backgroundColor="";
+				  		break;
+				}
+			};		
+			
+			btn2.onclick = handler;		//함수의 주소전달 (javascript 함수도 객체로 취급)
+			btn2.onmouseover = handler;
+			btn2.onmouseout = handler;
+			
+			
+			//btn2.onclick = function(){}
+			//btn2.onmouseover = function(){}
+			//btn2.onmouseout = function(){}
+		}
+		
+	</script>
+</head>
+<body>
+		<button id="mybtn"><span>눌러봐</span></button>
+		<br>
+		<button id="mybtn2">눌러봐2</button>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		//javascript 해석 > 브라우져(실행엔진) > 브라우져(필요로 하는 객체 보유)
+	    //내장객체 > window객체
+	    window.document.write("방가방가<br>");
+	    
+	    //window 객체 생략
+	    document.write("window객체 생략 가능<br>");
+	    
+	    //개발자 필수
+	    console.log("개발자 디버깅 , 결과 미리보기 , 오류메시지 확인");
+	    console.log(10+100);
+	    
+	    //타입 (java 8가지 기본타입)	
+	    //java 
+	    //int num =100;  float f = 3.14f
+	    
+	    //JavaScript 
+	    //var , let  , const
+	    //value : 정수 , 문자 , 날짜 3가지
+	    
+	    var num;  //undefined 정상 .... 정의되지 않았어
+	    num=100; //Type이 결정 ....
+	    console.log(num);
+	    console.log(typeof(num));  // 타입 설정 : number
+	    
+	    let n=500;
+	    console.log(n);
+	    
+	    //JavaScript [순서]대로 실행 된다 *********************]
+	    
+	    /*
+	    let ele = window.document.forms[0].elements[0]
+	    //<input type="text" name="userid" value="hong">
+	    console.log(ele);
+	    Uncaught TypeError: Cannot read property 'elements' of undefined
+	    */
+	    
+	    
+	    //순서에 상관없이 프로그래밍 .... 
+	    //함수를 생성 ... 순서대로 실행하는 것이 아니고 ... 그의 이름을 불러주면
+	    function callData(){
+	    	let localelement = window.document.forms[0].elements[0];
+	    	alert(localelement);
+	    }
+	</script>
+</head>
+<body>
+		<form action="" method="get" name="myform">
+			<input type="text" name="userid" value="hong">
+			<input type="password" name="pwd" value="1004">
+			<input type="submit" value="전송">
+		</form>
+		
+		<input type="button" value="클릭해보아여" onclick="callData()">
+</body>
+<script type="text/javascript">
+	let ele = window.document.forms[0].elements[0]
+	console.log(ele);
+	//ele >> <input type="text" name="userid" value="hong">
+	//필요한 정보만
+	console.log(ele.value);
+	console.log(ele.value.length);
+	
+	let value = window.document.myform.userid.value;
+	console.log("value : " + value);
+	console.log(typeof(value));
+	
+	if(value.length < 5){
+		alert("다시 입력해");
+		ele.value="";
+	}
+	
+</script>
+</html>
+
+
+
+

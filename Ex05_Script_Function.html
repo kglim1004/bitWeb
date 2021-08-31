@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/*
+			JAVA
+			public void print(){}
+			public String print(){return "";}
+			public int print(int num, int num2){return num + num2;}
+		
+		
+	    javascript : void(x) , return type(x) >> function 		
+		*/
+		function callConfirm(){  //사용자 정의 함수 <-> 내장(함수 : alert())
+	    	if(window.confirm("작업내용")){  //확인(true) ,취소(false) 있는 창 
+	    		 alert("삭제합니다");
+	    	}else{
+	    		 alert("취소합니다");
+	    	}
+	    }
+	    
+	    function showPopup(){
+	    	window.open("Ex05_popup.html","zipcode","width=200,height=200");
+	    	
+	    	//open() 새창 ...
+	    	//"width=200,height=200" 옵션값이 브라우져 마다 적용 다 틀려요
+	    	//https://www.w3schools.com/jsref/met_win_open.asp
+	    	//주소창 , 창의 크기 옵션 차이가 ....
+	    	
+	    }
+	    
+	    function myFunc(){
+	    	let mywindow = window.open("Ex05_popup.html","zipcode","width=500,height=200");
+	    	
+	    	//mywindow 새창 (팝업창)
+	    	//mywindow가 제어 할수 있어요
+	    	mywindow.document.write("<p>this is zipcode window</p>");
+	    }
+		
+	    
+	    //java : public void goUrlTime(String url){}
+	    function goUrlTime(url){ //parameter 타입 명시하지 않아요 >> 변수명
+	    	window.setTimeout("location.href='" + url + "'" ,3000);
+	    	//setTimeout 내장함수
+	    	//3초가 지나면 첫번쨰 parameter 있는 값을 실행해라
+	    	//location.href='www.duam.net'
+	    }
+	    
+	    //java : public int myFun(int i , int j , int k) {return i+j+k;}
+	    //javascript 함수 만드세요
+	    function myFun(i , j , k){
+	    	return i+j+k;
+	    }
+	    
+	    let result = myFun(10,20,30);
+	    console.log("result : " + result);
+	    
+	    //익명함수 : 이름없는 함수 
+	    //다른 곳에서 사용 못해요 (1번 쓰고 버려요)
+	    changeColor = function(){  //이름 없는 함수   function aa(){}
+	    	window.document.bgColor = "silver";
+	    	window.document.fgColor = "red";
+	    }
+	    
+	</script>
+</head>
+<body>
+		<h3>내장함수 , 사용자 정의 함수</h3>
+		<button onclick="callConfirm()">클릭 사건 발생(호출)</button><br>
+		<button onclick="showPopup()">새창</button><br>
+		<button onclick="myFunc()">팝업객체</button><br>
+		<button onclick="goUrlTime('http://www.daum.net')">3초후 이동</button><br>
+		<button onclick="changeColor()">익명함수</button><br>
+</body>
+</html>
