@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+</head>
+<body>
+	<p id="demo"></p>
+	<p id="demo2"></p>
+</body>
+	<script type="text/javascript">
+		//일반함수
+		//function foo(){}
+	
+		//익명함수
+		let foo = function(){
+			console.log("foo");
+		}
+		foo();
+		
+		//ES6 (함수의 줄임 표현)
+		//람다식
+		/*
+		//1
+		hello = function() {
+ 			 return "Hello World!";
+		}
+		//2
+		hello = () => {return "Hello World"};
+		//3
+		hello = () => "Hello world";
+		
+		
+		//1
+		hello = (val) => "hello" + val; //개인적
+		
+		//2
+		hello = val => "hello" + val;
+		
+		*/
+		
+		
+		//매개변수 parameter 가 없는 경우
+		let bar = () => console.log("bar");
+		bar();
+		
+		//매개변수 parameter 1개
+		//let foo2= function(x){return x};
+		let foo2 = x => x;
+		let data = foo2(100);
+		console.log(data);
+		
+		let helloF;
+		helloF = val => "hello" + val;
+		let data1 = helloF("world");
+		console.log(data1);
+		
+		
+		//매개변수가 parameter 2개이상인 경우
+		//let foo3 = function(a,b){ return a + b};
+		let foo3 = (a,b) => a+b;
+		let data2 = foo3(100,200);
+		console.log(data2);
+		
+		let foo4 = (a,b) => {let c = 100;  return a + b + c}; 
+		
+		//객체 return
+		let foo5 = () => ({a:1,b:2,c:3});
+		let data3 = foo5();
+		console.log(data3);
+		
+		//즉시 실행 함수(암기)
+		//함수는 호출에 의해서 실행되지만 .... 
+		//상황이 되면 자동 호출 >> onload = function() 처럼
+		(
+			function(){
+				console.log("즉시 실행 함수")
+			}()		
+		);
+		
+		//화살표
+		(
+			()=>{console.log("즉시 실행 화살표함수");}		
+		)();
+		
+		//Array 객체가 가지고 있는 모든 함수
+		//https://www.w3schools.com/jsref/jsref_obj_array.asp
+		
+		//암기(POINT)
+		/*
+		1. for(let i = 0 ; i <= 10 ; i++){}
+		
+		2. for(let index in Array){Array[index]}
+		
+		3. {a:1 , b:2 , v:3}
+		   for(let key in Object){key ... Object["key"]}
+		
+		4. Array.isArray()
+		5. Array.forEach(function(){})
+		6. Array.map()
+		*/
+		
+		function myFunc(){
+			let data = ["A" , "B" , "C" , "D"];
+			let x = document.getElementById("demo2");
+			x.innerHTML = Array.isArray(data);  //true , false
+		}
+		
+		myFunc();
+		
+		
+		
+		let numbers = [45,4,9,16,25];
+		//일반 for 사용해도 (합 , 값을 출력)
+		//callback 함수는 프로그램 논리에 의해서 호출 함수
+		//numbers.forEach(function(value , index , array){ })
+		//array.forEach(function(currentValue, index, arr), thisValue)
+		//안에 함수가 배열의 개수만큼 호출
+		function myFunc2(value,index,array){ //parameter 값이 정해져 ..
+			console.log(value);
+			console.log(index);
+			console.log(array);
+		}
+		numbers.forEach(myFunc2);
+		
+		
+		//let numbers = [45,4,9,16,25]; 
+		let numbermap = numbers.map(myFunc3); //새로운 값을 만들어서 >> 새로운 배열을 만들어서 리턴
+		//배열 각각의 값을 조작해서 새로운 배열을 만들 수 있다
+		function myFunc3(value,index,array){
+			return value * 2;
+		}
+		//[90,8....]배열을 리턴
+		console.log(numbermap);
+		
+		/////////////////////////////////////////////////////////////
+		
+		let evens = [2,4,6,8,9];
+		let odds = evens.map(val=>val+1); //function(val){return val+1}
+		console.log(odds);
+		
+		
+		let nums = evens.map((value,index)=>value+index);
+		console.log(nums);
+		
+		//forEach 을 map 처럼 사용
+		let arr =[];
+		evens.forEach(value=>{
+			if(value % 2 === 0){
+				arr.push(value);
+			}
+		});
+		console.log(arr);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

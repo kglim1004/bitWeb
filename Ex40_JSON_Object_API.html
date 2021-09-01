@@ -234,13 +234,58 @@ let data={
         		]
 		}	
 	
-	console.log(data);
+	//console.log(data);
 	//1 .라쿤의 이미지 경로만 추출하세요
-	
+	//이미지 경로는 "m" 속성의 값이죠
+	/*
+	for(let index in data.items){
+			//console.log(data.items[index]);
+			console.log(data.items[index].media.m);
+			document.write("<img src='" + data.items[index].media.m + "'><br>" );
+		}
+	*/
 	//2. Ex28_DOM_Event 그대로 가져다가 라쿤이미지 슬라이드 제작하세요
+	
+	
+	window.onload = function(){
+		    ////////////////////////////////////////////////////////
+			let myphotos = [];
+			let itemlist = data.items;
+			
+			for(let index in itemlist){
+				let media = itemlist[index].media;
+				console.log(media.m);
+				myphotos.push(media.m);
+			}
+			//console.log(myphotos);
+			
+			//////////////////////////////////////////////////////
+			let index=0;
+			//console.log("index : " + index);
+			
+			document.getElementById("prv").onclick = function(){
+				if(index == 0){
+					index = myphotos.length;
+				}
+				document.getElementById("imgs").src = myphotos[--index];
+			}
+			
+			document.getElementById("next").onclick = function(){
+				if(++index == myphotos.length){
+					//초기화
+					index=0;
+				}
+				
+				document.getElementById("imgs").src = myphotos[index];
+			}
+		}
+	
 	</script>
 </head>
 <body>
-
+<h3>DOM 슬라이드</h3>
+	<img alt="이미지"  src="" id="imgs" width="200" height="200">
+	<hr>
+	<a href="#" id="prv">이전</a>||<a href="#" id="next">다음</a>
 </body>
 </html>
