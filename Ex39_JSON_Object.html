@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		let myObj = {name:"john",age:30,city:"seoul"};
+		console.log(myObj);
+		
+		//[객체 데이터를] [문자열 데이터로]
+		//login.jsp?name=홍길동&age=30&city=seoul
+		//name=홍길동&age=30&city=seoul >> 문자열
+		let Stringdata = JSON.stringify(myObj); //POINT
+		console.log(Stringdata); //문자열 데이터
+		
+		//[문자열 데이터를] [객체 데이터로]
+		//조건 : 객체의 형태를 가지고 있어여 >>  key >> "name"
+		let myObj2 = '{"name":"john","age":30,"city":"seoul"}';
+		console.log(typeof(myObj2));  //string
+		let myJson = JSON.parse(myObj2);
+		console.log(typeof(myJson));
+		
+		//POINT**********************
+		console.log(myJson.name);     //객체.속성명
+		console.log(myJson["name"]);  //객체["속성명"]
+		
+		/*
+		  확장자
+		  index.html or index.htm
+		  css > common.css
+		  javascript > common.js
+		  json > common.json > MIME > application/json
+		  xml  > common.xml
+		*/
+		let myCars;
+		myCars = {
+				"name":"john",
+				"age":30,
+				"cars":[
+							{"name":"Ford","model":["Fiesta","Focus","Mustang"]},
+							{"name":"BMW","model":["320","x3","x5"]},
+							{"name":"Fiat","model":["500","Panda"]},
+					   ]
+				
+		}
+		
+		//json객체에서
+		//차량이름 >> 모델명을 추출해서 출력
+		//Ford -Fiesta  Focus  Mustang
+		//BMW  ..
+		//Fiat ..
+		//데이터 가공 하는 연습
+		console.log(myCars.cars); //여기서 부터 시작
+		for(let index in myCars.cars){
+			console.log(myCars.cars[index]);
+			document.write("차량이름 : " + myCars.cars[index].name);
+			for(let i in myCars.cars[index].model){
+				document.write(" "+ myCars.cars[index].model[i]);
+			}
+			document.write("<hr>");
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
