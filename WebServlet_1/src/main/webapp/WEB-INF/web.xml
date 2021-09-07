@@ -15,4 +15,24 @@
   	<servlet-name>simplecontroller</servlet-name>
   	<url-pattern>/simple</url-pattern>
   </servlet-mapping>
+ 
+  <!-- 
+   http://192.168.0.57:8090/WebServlet_1/simple
+   -->
+  
+    <servlet>
+  	<servlet-name>frontboardcontroller</servlet-name>
+ 	<servlet-class>com.board.FrontBoardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>frontboardcontroller</servlet-name>
+  	<url-pattern>/board</url-pattern>
+  </servlet-mapping>
+  <!--  http://192.168.0.57:8090/WebServlet_1/board   요청이 서버에 오면
+        com.board.FrontBoardController 컴파일 하고 실행해서 결과를 Client 전달
+    -->
 </web-app>
+
+
+
+
