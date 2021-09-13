@@ -1,8 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/*
+		비동기를 사용해서 (xmlHttpRequest) Id 검증하세요
+		Http://localhost:8090/WebServlet_6_Memo_mvc_dbcp_Helper/MemoId?id=admin
+		받은 결과가 : "false" alert("사용불가")
+		받은 결과가 : "true"  alert("사용가능")
+		
+		
+	  1. XMLHttpRequest 객체 얻기
+	  2. onreadystatechange 이벤트 핸들러 구현 (함수) >> 사건은 state 값의 변화시 마다 발생 >> 처리(함수)
+	  3. 요청 정보 ( open() )
+	  4. 요청 보내기 (send() )
+	  5. 응답 처리 (Text(JSON), xml )
+		*/
+		window.onload = function(){
+			 document.getElementById("message").addEventListener("click",function(){
+				 let data =document.getElementById("id").value;
+				
+				 if(data != ""){
+					 sendData(data);
+				 }else{
+					 alert("data 값 입력하세요");
+				 }
+				
+
+			 });
+		}
+		
+		
+		//비동기 함수 사용 
+		var httpReq=null;
+		
+		function getInstance(){
+			  if(window.XMLHttpRequest){
+				  httpReq = new XMLHttpRequest(); //현재 브라우져 XMLHttpRequest 내장
+			  }else if(window.ActiveXObject){ //IE6 이하   //지금 필요없어요
+				  httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+			  }else{
+				 throw new Error("AJAX 지원하지 않습니다"); 
+			  }
+			return httpReq;	  
+		}
+		function handlerStateChange(){
+			
+			if(httpReq.readyState == 4){  //1. 서버에서 응답이 왔다면
+	  			if(httpReq.status >= 200 && httpReq.status < 300){
+	  				//2. 서버에서 응답이 왔고  상태가 정상적인 (200~299)
+	  				console.log(">" + httpReq.responseText + "<");
+	  				let check = httpReq.responseText.trim();
+	  				
+	  				if(check === "false"){
+	  					alert("사용불가");
+	  					document.getElementById("id").value = "";
+	  				}else{
+	  					alert("사용가능");
+	  				}
+	  					
+	  			}else{
+	  				alert("status Text : " + httpReq.status);
+	  			}
+			}
+		}
+		function sendData(data){
+			httpReq = getInstance();
+			httpReq.onreadystatechange = handlerStateChange;
+			httpReq.open("GET","MemoId?id="+data);  //>> @WebServlet("/MemoId") 
+			
+			//httpReq.open("GET","login.jsp?id="+data);  
+			httpReq.send();
+		}
+	</script>
 </head>
 <body>
 <div style="margin-top:70px;"></div> 
@@ -28,7 +99,8 @@ JSP 경로   /Logindo
                 <b>ID</b> 
             </td> 
             <td> 
-                <input type="text" size="40" name="id" maxlength="10" > 
+                <input type="text" size="40" name="id" maxlength="10"  id="id"> 
+                <input type="button" value="ID확인"  id="message">
             </td> 
         </tr>     
         <tr> 

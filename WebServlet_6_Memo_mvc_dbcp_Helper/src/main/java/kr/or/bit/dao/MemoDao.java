@@ -145,7 +145,6 @@ public class MemoDao {
 			 System.out.println(e.getMessage());
 		}finally {
 			DbcpHelper.close(pstmt);
-			
 			//반드시 반환  pool//////////////////////
 			DbcpHelper.close(conn);
 			///////////////////////////////////////
@@ -170,6 +169,44 @@ public class MemoDao {
 		return null;
 	}
 	
+	
+	//ID 유무 함수
+		public String isCheckById(String id) {
+		
+			String ismemoid=null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			Connection conn = null; //POOL
+			String sql="select id from memo where id=?";
+
+			try {
+				   ////////////////////////////////////튜브하나 빌려주세요
+					conn = DbcpHelper.getConnection("oracle");
+				   ////////////////////////////////////
+				  pstmt = conn.prepareStatement(sql);
+				  pstmt.setString(1, id);
+				  		
+				  rs = pstmt.executeQuery();
+				  if(rs.next()) {
+					  //같은 ID 존재
+					  ismemoid = "false";
+				  }else {
+					  //사용가능한 ID
+					  ismemoid = "true";
+				  }
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}finally {
+				DbcpHelper.close(rs);
+				DbcpHelper.close(pstmt);
+				//반드시 반환  pool//////////////////////
+				DbcpHelper.close(conn);
+				///////////////////////////////////////
+			}
+			
+			return ismemoid;
+			
+		}
 }
 
 
