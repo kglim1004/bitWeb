@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*  
+		addClass() - Adds one or more classes to the selected elements
+		removeClass() - Removes one or more classes from the selected elements
+		toggleClass() - Toggles between adding/removing classes from the selected elements
+		css() - Sets or returns the style attribute
+		*/
+		$(function(){
+				$('td:contains("홍길동")').addClass('redcolor');
+				$('td:contains("홍길동")').siblings()
+				.addClass('bluecolor')
+				.parent()
+				.find("td:eq(0)") //필터 함수
+				.addClass("greencolor");
+				
+				$('#btnclick').on('click',function(){
+					alert("클릭");
+				});
+				
+				$('#btnclick').on('mouseover',function(){
+					document.getElementById("btnclick").style.backgroundColor="red";	
+				});
+				
+
+				$('#btnclick').on('mouseout',function(){
+					document.getElementById("btnclick").style.backgroundColor="white";	
+				});
+				
+				/*
+					$('p').on(
+								{   //json 객체 사용하기 (parameter)
+									mouseleave:function(){ $(this).css('background-color',"red"); },
+									click:function(){ $(this).css('background-color',"green");},
+									mouseenter:function(){ $(this).css('background-color',"blue");}
+								}		
+			);
+				*/
+				
+			$('#stylediv').on(
+				{
+					mouseover:function(){ $('#stylediv').addClass('greencolor') } ,
+					mouseout:function(){ 
+						$('#stylediv').removeClass('greencolor');
+						$('#stylediv').addClass('bluecolor');
+					}
+				}		
+			
+			);
+			
+			//https://www.w3schools.com/jquery/jquery_css_classes.asp
+				
+		});
+		
+	</script>
+	<style type="text/css">
+		.redcolor{color:red}
+		.bluecolor{color:blue}
+		.greencolor{color:green}
+		.whitecolor{color:white}
+	</style>
+</head>
+<body>
+<table>
+		<tr>
+			<td>이름</td>
+			<td>나이</td>
+			<td>취미</td>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>50</td>
+			<td>훔치기</td>
+		</tr>
+		<tr>
+			<td>이순신</td>
+			<td>10</td>
+			<td>싸움</td>
+		</tr>
+		<tr>
+			<td>학생</td>
+			<td>30</td>
+			<td>잠자기</td>
+		</tr>
+	</table>
+	<hr>
+	<h3>이벤트</h3>
+	<a href="http://www.naver.com">네이버 바로가기</a>
+	<hr>
+	<div id="btnclick">click</div>
+	<div id="btnclick2">click2</div>
+	<div id="stylediv">스타일적용</div>
+</body>
+</html>

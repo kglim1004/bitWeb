@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*
+		window.onload = function(){
+			document.getElementById("btn").onclick = function(){
+				alert("DOM Script");
+			}
+		}
+		*/
+		$(document).ready(function(){
+			//body 모든 요소가 메모리(DOM) 올라가고 나서 바로 함수를 실행 하겠다
+			$('#btn').click(function(){
+				$(this).hide(); 
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<input type="button" id="btn" value="버튼">
+</body>
+</html>

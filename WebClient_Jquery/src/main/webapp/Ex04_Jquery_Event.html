@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){ //줄임표현
+			$('#btncopy').click(function(){
+				let data = $('#txtuserid').val();
+				$('#txtcopyuserid').val(data);
+				
+			});
+		
+			//select 태그
+			$('#select_hobby').change(function(){
+				const text = $(':selected').text();
+				const text2 = $('#select_hobby option:selected').text();
+				const val = $('#select_hobby').val();
+				
+				console.log(text);
+				console.log(text2);
+				console.log(val);
+			});
+			
+			$('#txtpwd2').keyup(function(){
+				if($('#txtpwd').val() != $('#txtpwd2').val()){
+					$('#message').text("<h3>암호가 일치하지 않아요</h3>");
+				}else{
+					$('#message').html("<h3>암호가 일치</h3>")
+				}
+				
+				//innerHTML (태그 해석)
+				//innerTEXT (태그를 있는 그대로 출력)
+			});
+			
+			console.log($('input'));  //body 안에 있는 모든 input 태그 요소 >> Array
+			
+			//여러개 요소
+			$('input').focus(function(){
+				console.log($(this)); //this ...여러개일떄 ... 현재 선택한 태그 
+				$(this).css('background-color','gray');
+			});
+			
+			$('input').blur(function(){
+				console.log($(this)); //this ...여러개일떄 ... 현재 선택한 태그 
+				$(this).css('background-color','white');
+			});
+			
+			
+			//.hover(function(){} , function(){}));
+			//toggle (on 아니면 off)
+			$('p').hover(function() {
+				$(this).css('background-color','gold');
+			}, function() {
+				$(this).css('background-color','red');
+			});
+		});
+	</script>
+</head>
+<body>
+	<p>Jquery hover(mouseover , mouseleave)</p>
+	
+	ID:<input type="text" id="txtuserid">
+	<hr>
+	<input type="button" id="btncopy" value="copy">
+	<hr>
+	Copy ID:<input type="text" id="txtcopyuserid">
+	
+	<hr>
+	<select id="select_hobby">
+		<option value="JAVA">java</option>
+		<option value="SCRIPT">script</option>
+		<option>jdbc</option>
+	</select>
+	<br>
+	<input type="text" id="txtselect">
+	<hr>
+	<table style="border: 1px solid red;">
+		<tr>
+			<td>암호</td>
+			<td>
+				<input type="text" id="txtpwd" size="20" maxlength="5">
+			</td>
+		</tr>
+		<tr>
+			<td>암호확인</td>
+			<td>
+				<input type="text" id="txtpwd2" size="20" maxlength="5">
+			</td>
+		</tr>
+	</table>
+	<div id="message" style="color: red"></div>
+</body>
+</html>

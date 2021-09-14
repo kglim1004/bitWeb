@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*  
+		[javascript]
+		1. for(let index in Array) { Array[index] }
+		2. Object(JSON) : for(let key in jsonobj){ jsonobj[key] }
+		3. array.forEach(function(currentvalue , index , array){ ...})
+		4. array.map() ...
+		5. 응용 (()=>{})
+		
+		
+		아래 2가지는  :3. array.forEach(function(currentvalue , index , array){ ...}) 
+		활용해서 만든것
+		
+		
+		jquery : $(선택자).each() 
+		1. $(selector).each(function(){  this활용  });
+		2. $(selector).each(function(index){  this활용  });
+		3. $(selector).each(function(index,element){  element  });   70%
+		
+		
+		jquery : $.each()
+		1. $.each(Array or Object , function(){ this 활용});
+		2. $.each(Array or Object , function(index){ this 활용});
+		3. $.each(Array or Object , function(index, element){ element });  70%
+		
+		
+		paramemter json객체라면
+		let obj = {name:"홍길동" , age:100};
+		
+		$(obj).each(function(key, value){ value });
+		$.each(obj , function(key ,value){ value });
+		*/
+		$(function(){
+			$('p').each(function(){
+				//함수(callback함수) 3번 호출
+				//각각의 p 태그는 this로
+				console.log($(this).text());
+			});
+			
+			
+			$('p').each(function(index){
+				//함수(callback함수) 3번 호출
+				//각각의 p 태그는 this로
+				console.log("index :" + index);
+				console.log($(this).text());
+				
+				//index 활용하기()
+				//$(this).attr("id","para-"+index);
+				//$(this).attr("style","color:red");
+				//대부분의 jquery 함수는 parameter 로 객체(json)
+				$(this).attr(
+					{
+						"id":"param-"+index,
+						"style":"color:red"
+					}	
+				);
+			});
+			
+			$('p').each(function(index, element){  //70%
+				console.log("index : "+ index);
+				console.log(element);
+				console.log("element text : " + $(element).text());
+			});
+			
+			$('#btn').click(function(){
+				alert($('#param-1').text());
+			});
+			
+			/*
+				let arr = ["사과" ,"배"]   >> Array  push() , pop()
+				let obj = {} json객체
+				let arrobj = [{},{},}{}]  >> 객체 배열
+			*/
+			let arrayobj =[
+				{"name":"naver" , "link":"www.naver.com"},
+				{"name":"daum" ,  "link":"www.daum.net"},
+				{"name":"bit" ,   "link":"www.bit.or.kr"}
+			];
+			
+		   //문제 
+		   //$.each(Array or Object , function(index, obj){ element });
+		   //를 활용해서 name값하고 link값을 출력하세요
+		   $.each(arrayobj,function(index , obj){
+			   //console.log(index);
+			   //console.log(obj)
+			   console.log(obj.name + " / " + obj["link"]);
+			   //POINT 
+			   //1. 객체.속성명
+			   //2. 객체["속성명"]
+		   });
+				
+		   
+		   let boardobj = {
+				   values:[
+					         {no:1 , title:"hello world"},
+					         {no:2 , title:"korea"},
+					         {no:3 , title:"bit world"}
+				   	      ],
+				   search:"검색"	      
+		   }
+		   
+		   //1. $.each() 를 사용해서 no값 , title값을 출력하세요
+		   $.each(boardobj.values , function(index, obj){
+				console.log(index + " / " + obj.no + " , " + obj["title"]);
+			});
+		   
+		   // 2. boardobj key , value 값을 출력
+		    $.each(boardobj , function(key, value){
+				console.log(key + " / "+  value);
+			});
+		   
+		   
+		   //3. $.each() no 값 , title 값 , serarch 값을 출력하세요  (중첩 each문)
+		    $.each(boardobj , function(key, value){
+				if(typeof(value) == "object"){
+					$.each(value, function(index, obj){
+						console.log(index + " / " + obj.no + " , " + obj.title);
+					});
+				}else{
+					console.log(key + " / " + value);
+				}
+			});
+		   
+		});
+	</script>
+</head>
+<body>
+		<p>java</p>
+		<p>jsp</p>
+		<p>oracle</p>
+		<input type="button" value="click" id="btn">
+</body>
+</html>
+
+
+
+
