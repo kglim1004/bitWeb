@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 let data={
 			"title": "Recent Uploads tagged raccoon",
@@ -282,6 +283,35 @@ let data={
 			}
 		}
 	*/
+	$(document).ready(function() {
+		let mediaList = [];
+		//console.log(data.items);
+		$.each(data.items,function(index, element) {
+			mediaList.push(element.media.m);
+	     });
+	
+        let index=0;
+        $('#imgs').attr('src', mediaList[0]);
+        
+        console.log("index : " + index);
+        
+        $('#prv').click(function() {
+            if(index == 0){
+              index = mediaList.length;
+          }
+            $('#imgs').attr('src', mediaList[--index]);
+            console.log("index : " + index);
+        });
+        
+        $('#next').click(function() {
+            if(index == (mediaList.length-1)){
+              index = -1;
+          }
+            $('#imgs').attr('src', mediaList[++index]);
+            console.log("index : " + index);
+        });
+       
+    });
 	</script>
 </head>
 <body>
