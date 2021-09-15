@@ -22,7 +22,7 @@
 		}
 		td{
 		    border: 1px solid #dddddd;
-			text-align: left;
+			text-align: center;
 			padding: 8px;
 		}
 		tr:nth-child(even) {  /* even 짝수     odd 홀수 */
@@ -32,7 +32,7 @@
 	
 </head>
 <body>
-<c:set var="memolist" value="${requestScope.memolist}"></c:set>
+<c:set var="memo" value="${requestScope.memo}"></c:set>
 <div align=center>
 <hr color=green width=400><h2> Line Memo List </h2><hr color=green width=400>
 <table> 
@@ -41,16 +41,19 @@
 	 	<th>MemoContent</th>
 	 	<th>Email</th>
 	 </tr>
-	<c:forEach var="memo" items="${memolist}">
-		<tr>
-			<td><a href="MemoView.memo?id=${memo.id}">${memo.id}</a></td>
+	<tr>
+			<td>${memo.id}</td>
 			<td>${memo.email}</td>
 			<td>${memo.content}</td>
-		</tr>
-	</c:forEach>
+	</tr>
 </table>
 </div>
 <a href='memo.html'>글쓰기</a>
-
+<hr>
+<a href="MemoList.memo">목록보기</a> 
+<hr>
+<a href="MemoEdit.memo?id=${memo.id}">수정하기</a> 
+<hr>
+<a href="MemoDelete.memo?id=${memo.id}">삭제하기</a> 
 </body>
 </html>

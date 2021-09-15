@@ -68,10 +68,24 @@ AJAX 처리하기
 -------------------------------------------------------------
 추가 과제 상세페이지 만들기
 <a href="detailView.do?id=${memo.id}">${memo.id}</a>
+글쓴이를  클릭하면 PK 있다는 전제하에
+기존에 중복 데이터 있으면 삭제하고 commit 하시고 하세요
+--alter table add conn....
 1개의 내용만 보여주기
 
+게시판 상세보기 처럼 ....
+수정, 삭제 가 가능 ....
 
+--------------------------------------
 
+상세보기
+수정하기 | 삭제하기 링크 만들고
+
+수정하기 : 기존있는 데이터 출력하고 변경 저장 (select ... ) 변경 (update ...)
+수정하기 화면 (content , email) 변경 하고 저장
+update memo set content=? , email=? where id=?
+
+삭제 delete from memo where id=?
 
 
 

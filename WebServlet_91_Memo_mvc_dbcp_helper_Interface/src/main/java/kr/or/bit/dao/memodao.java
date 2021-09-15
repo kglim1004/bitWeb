@@ -45,14 +45,37 @@ public class memodao {
 	 */
 	
 	//1건의 데이터 read (where 조건으로 사용되는 컬럼은 반드시 unique , primary key)
-	public memo getMemoListById(String id) {
+	public memo getMemoListById(String id) throws SQLException {
 		/*
 		  select id, email ,content from memo where id=?
 		  memo m = new memo();
 		  m.setId(rs.getInt(1)) ...
 		  return m
 		*/
-		return null;
+		Connection conn = ConnectionHelper.getConnection("oracle"); //객체 얻기
+		
+		PreparedStatement pstmt = null;
+		String sql="select id, email , content from memo where id=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		memo m = null;
+		while(rs.next()) {
+			m = new memo();
+			m.setId(rs.getString("id"));
+			m.setEmail(rs.getString("email"));
+			m.setContent(rs.getString("content"));
+		}
+		
+		
+		ConnectionHelper.close(rs);
+		ConnectionHelper.close(pstmt);
+		ConnectionHelper.close(conn); //반환하기
+		
+		return m;
+		
 	}
 	
 	//전체 데이터 read (where 조건절이 없어요)
@@ -119,13 +142,64 @@ public class memodao {
 	public int updateMemo(memo m) {
 		//update memo set email=? , content=? where id=?
 		//m.getId()
-		return 0;
+		Connection conn =null;//추가
+		int resultrow=0;
+		PreparedStatement pstmt = null;
+		System.out.println(m.toString());
+		try {
+				conn= ConnectionHelper.getConnection("oracle");//추가
+				
+				String sql = "update memo set email=? , content=? where id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, m.getEmail());
+				pstmt.setString(2, m.getContent());
+				pstmt.setString(3, m.getId());
+				
+				resultrow = pstmt.executeUpdate();
+				
+		}catch(Exception e) {
+			System.out.println("Update : " + e.getMessage());
+		}finally {
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+			try {
+				conn.close(); //받환하기
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return resultrow;
 	}
 	
 	//Delete
 	public int deleteMemo(String id) {
 		//delete from memo where id=?
-		return 0;
+		Connection conn =null;//추가
+		int resultrow=0;
+		PreparedStatement pstmt = null;
+		
+		try {
+				conn= ConnectionHelper.getConnection("oracle");//추가
+				
+				String sql = "delete from memo where id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,id);
+			
+				
+				resultrow = pstmt.executeUpdate();
+				
+		}catch(Exception e) {
+			System.out.println("Delete : " + e.getMessage());
+		}finally {
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+			try {
+				conn.close(); //받환하기
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return resultrow;
 	}
 
 	//추가함수 (ID 존재 유무 판단 함수)

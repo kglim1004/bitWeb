@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.MemoAddService;
+import kr.or.bit.service.MemoDeleteService;
+import kr.or.bit.service.MemoDetailService;
+import kr.or.bit.service.MemoEditOkService;
+import kr.or.bit.service.MemoEditService;
 import kr.or.bit.service.MemoIdCheckService;
 import kr.or.bit.service.MemoListService;
 
@@ -53,14 +57,31 @@ public class FrontMemoController extends HttpServlet {
     		//UI+로직
     		action = new MemoIdCheckService();
     		forward = action.execute(request, response);
-    		
     		System.out.println("MemoIdCheckService 실행");
-    	}else if(url_Command.equals("/MemoView.memo")) { //만약 있다면 상세보기
-    		//UI 제공 ...
-    		//예) /WEB-INF/views/memoview.jsp 가정
-    		forward = new ActionForward();
-    		forward.setRedirect(false);
-    		forward.setPath("/WEB-INF/views/memoview.jsp");
+    
+    	}else if(url_Command.equals("/MemoView.memo")) { //상세보기
+    		//UI+로직
+    		action = new MemoDetailService();
+    		forward = action.execute(request, response);
+    		System.out.println("MemoViewService 실행");
+    	
+    	}else if(url_Command.equals("/MemoEdit.memo")) { //수정하기
+    		//UI+로직
+    		action = new MemoEditService();
+    		forward = action.execute(request, response);
+    		System.out.println("MemoEditService 실행");
+    	
+    	}else if(url_Command.equals("/MemoEditOk.memo")) { //수정처리하기
+    		//UI+로직
+    		action = new MemoEditOkService();
+    		forward = action.execute(request, response);
+    		System.out.println("MemoEditOkService 실행");
+    	
+    	}else if(url_Command.equals("/MemoDelete.memo")) { //삭제하기
+    		//UI+로직
+    		action = new MemoDeleteService();
+    		forward = action.execute(request, response);
+    		System.out.println("MemoDeleteService 실행");
     	}
     	
     	if(forward != null) {
