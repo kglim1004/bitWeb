@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<!-- 필수  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	<!-- Jquery  UI 사용  js , css-->
+	 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!--  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/sunny/jquery-ui.css">
+
+	<script type="text/javascript">
+	$(function() {
+	    $( "#datepicker" ).datepicker(
+	    	{
+	    		dateFormat: "yy-mm-dd",
+	    		onSelect: function(date){ alert("onselect : " + date); } ,
+	    		onClose: function(date){
+	    			 alert("onClose : " + date);
+	    			 
+	    		}
+	    	}		
+	    
+	    );
+	 
+	});
+	</script>
+</head>
+<body>
+		<p>Date: <input type="text" id="datepicker"></p>
+</body>
+</html>
