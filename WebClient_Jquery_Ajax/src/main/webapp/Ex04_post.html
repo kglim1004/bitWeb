@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*
+		jQuery.post( url [, data ] [, success ] [, dataType ] )
+		
+		parameter 보내기
+		
+		1. bad
+		$.post("Ex04_Server.jsp?name=hong&pwd=1004")
+		
+		2. bad
+		let name = $('#name').val();
+		let pwd  = $('#pwd').val();
+		let param = 'name='+name+'&pwd='+pwd
+		$.post("Ex04_Server.jsp?param")
+		
+		3. good
+		const data={"name":$('#name').val() , "pwd":$('#pwd').val()}
+		$.post("Ex04_Server.jsp",data);
+		
+		*/
+		$(function(){
+			$('#btn').click(function(){
+				const data={"name":$('#name').val() , "pwd":$('#pwd').val()}
+				$.post("Ex04_Server.jsp",data,function(responsedata){
+					$('#message').html(responsedata);
+				});
+				
+			});
+		});
+	</script>
+</head>
+<body>
+		<!--  
+			비동기 처리 form 필요 없어요
+			input 속성에 name 속성이 필요없어요
+		-->
+		이름:<input type="text" id="name"><br>
+		비번:<input type="text" id="pwd"><br>
+			<input type="button" id="btn" value="비동기전송">
+		<hr>
+		<div id="message"></div>
+</body>
+</html>

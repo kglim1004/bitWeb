@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		//jQuery.getJSON( url [, data ] [, success ] )
+		//기본 옵션이 
+		//dataType : JSON 으로 설정
+		$(function(){
+			
+			$('#btn .btnload').click(function(){
+				
+				$.getJSON("Ex05_json.json",function(jsondata){
+					console.log(jsondata);	
+					//가공은 여러분 마음
+					$.each(jsondata ,function(index, obj){
+						console.log(index + " / " + obj.num + " / " + obj.Name);						
+					});
+				});
+			});
+			
+			
+		});
+	</script>
+</head>
+<body>
+		<div id="btn">
+			<div class="btnload">JSON DATA LOAD</div>
+		</div>
+		<div id="display">
+		</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*  
+		Low-Level Interface
+		jQuery.ajax() Perform an asynchronous HTTP (Ajax) request.
+		
+		jQuery.ajax( url [, settings ] )
+		https://api.jquery.com/jQuery.ajax/
+		
+		settings  >> {json 객체 형태로 옵션 설정}
+		
+		
+		옵션
+		data  : 서버에 보내는 parameter ?data=a& ...
+		Type: PlainObject or String or Array
+		
+		
+		
+		
+		>> 서버가 클라이언트에게 응답하는 데이터 형식 정의
+		dataType (default: Intelligent Guess (xml, json, script, or html))
+		Type: String
+		
+		Text: json , script , html , css (resonseText)
+		xml : xml (responseXml)
+		*/
+		
+		$(function(){
+			$('#message').click(function(){
+				//비동기 함수 실행
+				$.ajax(
+					{
+						url:"Ex02_Server_menu.html",
+						dataType:"html", //서버가 응답하는 데이터 형식 html
+						success:function(responsedata){
+							//서버에서 응답이 왔고 응답이 정상건이라면
+							//$('#menudiv').html(responsedata);
+							$('#menudiv').html($(responsedata).find('li'));
+						}
+					}		
+				);
+			});
+		});
+	</script>
+</head>
+<body>
+		<div id="menudiv">
+			<a href="#" id="menu1"></a>
+		</div>
+		
+		<span id="message">클릭하세요</span>	
+			
+</body>
+</html>
+
+
+
+
+
